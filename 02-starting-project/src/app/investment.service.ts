@@ -4,10 +4,12 @@ import { InvestmentOutput } from './investment-output.model';
 
 @Injectable({ providedIn: 'root' })
 export class InvestmentService {
+
   resultsData?: InvestmentOutput[];
+
   calculateInvestmentResults(data: InvestmentInput) {
-    const { initialInvestment, duration, expectedReturn, annualInvestment } =
-      data;
+
+    const { initialInvestment, duration, expectedReturn, annualInvestment } = data;
     const annualData = [];
     let investmentValue = initialInvestment;
 
