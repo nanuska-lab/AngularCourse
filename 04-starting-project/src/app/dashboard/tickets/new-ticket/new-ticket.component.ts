@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, viewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, viewChild, AfterViewInit, output } from '@angular/core';
 import { ButtonComponent } from "../../../shared/button/button.component";
 import { ControlComponent } from "../../../shared/control/control.component";
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,8 @@ export class NewTicketComponent implements AfterViewInit {
   // @ViewChild('form') form?: ElementRef<HTMLFormElement>;
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
 
+  add=output<{title: string, text: string}>();
+
   ngAfterViewInit() {
     console.log("AFTER VIEW INIT");
     console.log(this.form()?.nativeElement);
@@ -24,5 +26,6 @@ export class NewTicketComponent implements AfterViewInit {
    console.log(ticketText);
    
    this.form().nativeElement.reset();
+   this.add.emit({title: title, text: ticketText});
   }
 }
